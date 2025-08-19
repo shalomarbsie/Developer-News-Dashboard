@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/button.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/theme-switch.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar">
+            <div class="navbar-top">
+                <div class="logo">PatchNotes</div>
+                <input type="text" class="input" placeholder="Search news...">
+
+                <div class="right-controls">
+                    <div class="theme-toggle">
+                        <span class="theme-label">Dark</span>
+                        <label class="switch">
+                            <input type="checkbox" id="themeSwitch">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <button class="account-btn">Account</button>
+                </div>
+            </div>
+
+        <div class="navbar-bottom">
+            <button class="filter-btn active">All</button>
+            <button class="filter-btn">Hacker News</button>
+            <button class="filter-btn">Dev.to</button>
+            <button class="filter-btn">Reddit</button>
+            <button class="filter-btn">Favorites</button>
+        </div>
+    </nav>
+
+    <script src="js/activeButtons.js"></script>
+    <script src="js/themeSwitch.js"></script>
+</body>
+</html>

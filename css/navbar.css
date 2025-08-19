@@ -1,0 +1,52 @@
+.navbar {
+  background-color: white;
+  padding: 0.8rem 2rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  font-family: "JetBrains Mono", monospace;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  border-radius: 1rem;
+  margin: 1rem;
+}
+
+.navbar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.navbar-top > .input {
+  flex: 1;          
+  min-width: 300px;
+  max-width: 600px;  
+}
+
+.navbar-bottom {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: black;
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.right-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-shrink: 0;    /* prevents it from squeezing search bar */
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
