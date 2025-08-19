@@ -3,15 +3,16 @@
   font-size: 0.9rem;
   padding: 0.5rem 1rem;
   border-radius: 0.4rem;
-  border: none;
   cursor: pointer;
-  background: lightgray;
-  color: grey;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: 1px solid var(--muted-text);
   transition: 0.3s;
 }
 
 .account-btn:hover {
-  box-shadow: 0 0 0 .15vw #F59E0B;
+  background-color: var(--muted-text);
+  color: var(--btn-text);
 }
 
 .account-btn.active {
@@ -22,9 +23,9 @@
 .filter-btn {
   font-family: inherit;
   font-size: 0.95rem;
-  color: grey;
-  background-color: lightgrey;
-  border: none;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: 1px solid var(--muted-text);
   border-radius: 0.5rem;
   padding: 0.6rem 1.2rem;
   cursor: pointer;
@@ -33,7 +34,8 @@
 }
 
 .filter-btn:hover {
-  box-shadow: 0 0 0 .15vw #3B82F6;
+  background-color: var(--muted-text);
+  color: var(--btn-text);
 }
 
 .filter-btn.active {

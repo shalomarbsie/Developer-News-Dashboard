@@ -1,0 +1,20 @@
+:root {
+  /* Light mode colors */
+  --bg-color: #F9FAFB;        /* Neutral Light */
+  --text-color: #1F2937;      /* Neutral Dark */
+  --surface-color: white;     /* Navbar/cards in light */
+  --muted-text: #6B7280;      /* Slightly darker gray for muted text */
+  --input-bg: #E5E7EB;        /* Light gray input */
+  --btn-bg: #E5E7EB;          /* Light gray buttons */
+  --btn-text: #1F2937;        /* Dark text */
+}
+
+body.dark-mode {
+  --bg-color: #1F2937;        /* Neutral Dark */
+  --text-color: #F9FAFB;      /* Neutral Light */
+  --surface-color: #374151;   /* Card/Surface */
+  --muted-text: #9CA3AF;      /* Light muted gray */
+  --input-bg: #374151;        /* Dark gray input */
+  --btn-bg: #374151;          /* Dark button */
+  --btn-text: #F9FAFB;        /* White text */
+}

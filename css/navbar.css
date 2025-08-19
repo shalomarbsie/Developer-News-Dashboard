@@ -1,5 +1,5 @@
 .navbar {
-  background-color: white;
+  background-color: var(--surface-color);
   padding: 0.8rem 2rem;
   box-shadow: 0 2px 5px rgba(0,0,0,0.5);
   font-family: "JetBrains Mono", monospace;
@@ -32,7 +32,7 @@
 .logo {
   font-size: 2rem;
   font-weight: bold;
-  color: black;
+  color: var(--text-color);
   font-style: italic;
   white-space: nowrap;
 }
@@ -42,11 +42,4 @@
   gap: 1rem;
   align-items: center;
   flex-shrink: 0;    /* prevents it from squeezing search bar */
-}
-
-.theme-toggle {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-shrink: 0;
 }
