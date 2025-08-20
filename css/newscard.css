@@ -75,3 +75,21 @@
 .name:hover {
   cursor: pointer;
 }
+
+.card .heading a:link {
+    color: #3B82F6;
+    text-decoration: none;
+}
+
+.card .heading a:visited {
+    color: #10B981;   /* after click/visited link */
+}
+
+.card .heading a:hover {
+    color: #F59E0B;   /* on hover */
+    text-decoration: underline;
+}
+
+.card .heading a:active {
+    color: #EF4444;   /* while pressing */
+}

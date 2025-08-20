@@ -5,7 +5,7 @@ async function fetchTopStories() {
         const storyIds = await response.json();
 
         const stories = await Promise.all(
-            storyIds.slice(0, 10).map(async id => {
+            storyIds.slice(0, 12).map(async id => {
                 const storyResponse = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
                 return storyResponse.json();
             })
@@ -14,7 +14,7 @@ async function fetchTopStories() {
         renderStories(stories);
     } catch (error) {
         console.error("Error fetching Hacker News:", error);
-        document.dispatchEvent(new Event("newsLoaded")); // make sure loader hides even on error
+        document.dispatchEvent(new Event("newsLoaded"));
     }
 }
 
@@ -23,17 +23,32 @@ function renderStories(stories) {
     container.innerHTML = `<div class="card-container"></div>`;
     const cardContainer = container.querySelector(".card-container");
 
+    const sourceIcons = {
+        "Hacker News": "assets/hackernews.png",
+        "Dev.to": "assets/devto.png",
+        "Reddit": "assets/reddit.png"
+    }
+
     stories.forEach(story => {
         if (!story) return;
+        
+        let source = "Hacker News";
+
+        if (story.url) {
+            if (story.url.includes("dev.to")) source = "Dev.to";
+            else if (story.url.includes("reddit.com")) source = "Reddit";
+        }
+
+        const iconSrc = sourceIcons[source];
 
         const card = document.createElement("div");
         card.classList.add("card");
 
         card.innerHTML = `
             <div class="card-image">
-                <img src="assets/stockphotocode.jpg" alt="HN article">
+                <img src="${iconSrc}" alt="${source} icon">
             </div>
-            <div class="category"> Hacker News </div>
+            <div class="category"> ${source} </div>
             <div class="heading">
                 <a href="${story.url || "#"}" target="_blank">${story.title}</a>
                 <div class="author">
