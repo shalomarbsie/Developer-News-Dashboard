@@ -1,17 +1,31 @@
 .card-container {
   display: grid;
+  flex-wrap: wrap;
   grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+  grid-auto-rows: 1fr;
   gap: 1rem; /* spacing between cards */
   margin: 1rem;
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  height: 90%;
   background: var(--color-card);
   padding: .8em;
   border-radius: 1rem;
   overflow: hidden;
   transition: background 0.3s ease, transform 0.2s ease;
   border: 1px solid transparent;
+  position: relative;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: auto;
+  padding-top: 10px;
 }
 
 .card-image {
@@ -49,6 +63,17 @@
 
 .category:hover {
   cursor: pointer;
+}
+
+.favorite-icon {
+  cursor: pointer;
+  font-size: 1.3rem;
+  color: #ccc; /* hollow */
+  transition: color 0.3s ease;
+}
+
+.favorite-icon.active {
+  color: gold;
 }
 
 .heading {

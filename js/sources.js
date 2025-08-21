@@ -1,8 +1,8 @@
 let allStories = [];
-let currentFilter = "All"; // default category
-let currentSearch = "";    // default search query
+let currentFilter = "All"; 
+let currentSearch = "";
 
-// --- Fetch Hacker News
+// Fetch Hacker News
 async function fetchHackerNews() {
     const response = await fetch("https://hacker-news.firebaseio.com/v0/topstories.json");
     const storyIds = await response.json();
@@ -17,7 +17,7 @@ async function fetchHackerNews() {
                 author: data.by,
                 score: data.score,
                 source: "Hacker News",
-                description: data.text || "", // add description if available
+                description: data.text || "", 
                 image: "assets/hackernews.png"
             };
         })
@@ -25,7 +25,7 @@ async function fetchHackerNews() {
     return stories;
 }
 
-// --- Fetch Dev.to
+// Fetch Dev.to
 async function fetchDevTo() {
     const response = await fetch("https://dev.to/api/articles?top=10");
     const articles = await response.json();
@@ -41,7 +41,7 @@ async function fetchDevTo() {
     }));
 }
 
-// --- Master fetch
+// Master fetch
 async function fetchAllSources() {
     try {
         const [hnStories, devtoStories] = await Promise.all([
@@ -57,7 +57,7 @@ async function fetchAllSources() {
     }
 }
 
-// --- Filtering logic
+// Filtering logic
 function getFilteredStories() {
     let stories = (currentFilter === "All")
         ? [...allStories].sort((a, b) => (b.score || 0) - (a.score || 0))
@@ -74,7 +74,7 @@ function getFilteredStories() {
     return stories;
 }
 
-// --- Render
+// Render
 function renderStories(stories) {
     const container = document.getElementById("cards-placeholder");
     container.innerHTML = `<div class="card-container"></div>`;
@@ -94,19 +94,49 @@ function renderStories(stories) {
             </div>
             <div class="category">${story.source}</div>
             <div class="heading">
-                <a href="${story.url}" target="_blank">${story.title}</a>
+                <a href="${story.url || "#"}" target="_blank">${story.title}</a>
+            </div>
+            <div class="card-footer">
                 <div class="author">
-                    By <span class="name">${story.author}</span> • ${story.score || 0} points
+                    By <span class="name">${story.author || "Unknown"}</span> • ${story.score ? `${story.score} points` : ""}
                 </div>
+                <div class="favorite-icon" data-url="${story.url}">&#9734;</div>
             </div>
         `;
+
         cardContainer.appendChild(card);
     });
 
     document.dispatchEvent(new Event("newsLoaded"));
+
+    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+
+    cardContainer.querySelectorAll(".favorite-icon").forEach(icon => {
+        const url = icon.dataset.url;
+        if (favorites.includes(url)) {
+            icon.classList.add("active");
+            icon.innerHTML = "★"; 
+        } else {
+            icon.innerHTML = "☆";
+        }
+
+        icon.addEventListener("click", () => {
+            if (favorites.includes(url)) {
+                const index = favorites.indexOf(url);
+                favorites.splice(index, 1);
+                icon.classList.remove("active");
+                icon.innerHTML = "☆";
+            } else {
+                favorites.push(url);
+                icon.classList.add("active");
+                icon.innerHTML = "★";
+            }
+            localStorage.setItem("favorites", JSON.stringify(favorites));
+        });
+    });
 }
 
-// --- Navbar filters
+// Navbar filters
 function setupFilterButtons() {
     document.querySelectorAll(".filter-btn").forEach(button => {
         button.addEventListener("click", () => {
@@ -119,7 +149,7 @@ function setupFilterButtons() {
     });
 }
 
-// --- Search input
+// Search input
 function setupSearch() {
     const searchInput = document.querySelector(".input");
     searchInput.addEventListener("input", e => {
@@ -128,7 +158,7 @@ function setupSearch() {
     });
 }
 
-// --- Init
+// Init
 document.addEventListener("DOMContentLoaded", () => {
     setupFilterButtons();
     setupSearch();
