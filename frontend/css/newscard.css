@@ -1,16 +1,16 @@
 .card-container {
   display: grid;
   flex-wrap: wrap;
-  grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
-  grid-auto-rows: 1fr;
-  gap: 1rem; /* spacing between cards */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem; 
   margin: 1rem;
 }
 
 .card {
+  min-height: 300px;
   display: flex;
   flex-direction: column;
-  height: 90%;
+  height: auto;
   background: var(--color-card);
   padding: .8em;
   border-radius: 1rem;

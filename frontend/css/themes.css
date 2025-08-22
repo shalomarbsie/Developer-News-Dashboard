@@ -7,6 +7,8 @@
   --input-bg: #E5E7EB;        /* Light gray input */
   --btn-bg: #E5E7EB;          /* Light gray buttons */
   --btn-text: #1F2937;        /* Dark text */
+  --skeleton-bg: #e0e0e0;
+  --skeleton-gradient: #f5f5f5;
 }
 
 body.dark-mode {
@@ -17,4 +19,6 @@ body.dark-mode {
   --input-bg: #374151;        /* Dark gray input */
   --btn-bg: #374151;          /* Dark button */
   --btn-text: #F9FAFB;        /* White text */
+  --skeleton-bg: #555555;
+  --skeleton-gradient: #666666;
 }

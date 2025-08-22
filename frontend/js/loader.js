@@ -1,12 +1,20 @@
-// loader.js
-window.addEventListener("load", () => {
-    const loader = document.getElementById("loader");
+export function showSkeletons(count = 12) {
+    const container = document.getElementById("cards-placeholder");
+    container.innerHTML = `<div class="card-container"></div>`;
+    const cardContainer = container.querySelector(".card-container");
 
-    // Listen for the signal from hackerNews.js
-    document.addEventListener("newsLoaded", () => {
-        loader.style.transition = "opacity 0.3s ease";
-        loader.style.opacity = "0";
+    for (let i = 0; i < count; i++) {
+        const skeleton = document.createElement("div");
+        skeleton.classList.add("card", "skeleton-card");
+        skeleton.innerHTML = `
+            <div class="skeleton skeleton-image"></div>
+            <div class="skeleton skeleton-text-block"></div>
+        `;
+        cardContainer.appendChild(skeleton);
+    }
+}
 
-        setTimeout(() => loader.remove(), 300);
-    });
-});
+export function hideSkeletons() {
+    const container = document.getElementById("cards-placeholder");
+    container.innerHTML = "";
+}

@@ -20,4 +20,9 @@ themeSwitch.addEventListener('change', () => {
         localStorage.setItem('theme', 'light');
         themeLabel.textContent = "Light";
     }
+
+    const skeletons = document.querySelectorAll('.skeleton-card');
+    if (skeletons.length > 0) {
+        skeletons.forEach(s => s.offsetHeight); // force a repaint (trick for some browsers)
+    }
 });

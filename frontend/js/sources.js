@@ -1,5 +1,7 @@
+import { showSkeletons, hideSkeletons } from "./loader.js";
+
 let allStories = [];
-let currentFilter = "All"; 
+let currentFilter = "All";
 let currentSearch = "";
 
 // Fetch Hacker News
@@ -63,6 +65,7 @@ async function fetchReddit(subreddit = "programming") {
 
 // Master fetch
 async function fetchAllSources() {
+    showSkeletons();
     try {
         const [hnStories, devtoStories, redditStories] = await Promise.all([
             fetchHackerNews(),
@@ -71,14 +74,13 @@ async function fetchAllSources() {
         ]);
 
         allStories = [...hnStories, ...devtoStories, ...redditStories];
-        console.log(allStories)
 
         renderStories(getFilteredStories());
     } catch (error) {
         console.error("Error fetching sources:", error);
-        document.dispatchEvent(new Event("newsLoaded"));
     }
 }
+
 
 // Filtering logic
 function getFilteredStories() {
@@ -100,6 +102,7 @@ function getFilteredStories() {
 
 // Render
 function renderStories(stories) {
+    hideSkeletons();
     const container = document.getElementById("cards-placeholder");
     container.innerHTML = `<div class="card-container"></div>`;
     const cardContainer = container.querySelector(".card-container");
@@ -108,10 +111,11 @@ function renderStories(stories) {
         cardContainer.innerHTML = `<p class="no-results">No results found.</p>`;
     }
 
+
     stories.forEach(story => {
         const card = document.createElement("div");
         card.classList.add("card");
-
+        
         card.innerHTML = `
             <div class="card-image">
                 <img src="${story.image}" alt="${story.source}">
@@ -130,7 +134,6 @@ function renderStories(stories) {
                 <div class="favorite-icon" data-url="${story.url}">&#9734;</div>
             </div>
         `;
-
         cardContainer.appendChild(card);
     });
 
@@ -161,13 +164,16 @@ function renderStories(stories) {
             localStorage.setItem("favorites", JSON.stringify(favorites));
         });
     });
+
 }
 
 // Navbar filters
 function setupFilterButtons() {
-    document.querySelectorAll(".filter-btn").forEach(button => {
+    const buttons = document.querySelectorAll(".filter-btn");
+
+    buttons.forEach(button => {
         button.addEventListener("click", () => {
-            document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+            buttons.forEach(btn => btn.classList.remove("active"));
             button.classList.add("active");
 
             currentFilter = button.textContent.trim();
@@ -175,6 +181,7 @@ function setupFilterButtons() {
         });
     });
 }
+
 
 // Search input
 function setupSearch() {
