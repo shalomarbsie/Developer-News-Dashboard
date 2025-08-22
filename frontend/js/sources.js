@@ -3,6 +3,8 @@ import { showSkeletons, hideSkeletons } from "./loader.js";
 let allStories = [];
 let currentFilter = "All";
 let currentSearch = "";
+let storiesPerPage = 10;
+let currentIndex = 0;
 
 // Fetch Hacker News
 async function fetchHackerNews() {
@@ -10,7 +12,7 @@ async function fetchHackerNews() {
     const storyIds = await response.json();
 
     const stories = await Promise.all(
-        storyIds.slice(0, 10).map(async id => {
+        storyIds.slice(0, 50).map(async id => { // fetch more for infinite scroll
             const storyResponse = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
             const data = await storyResponse.json();
             return {
@@ -30,7 +32,7 @@ async function fetchHackerNews() {
 
 // Fetch Dev.to
 async function fetchDevTo() {
-    const response = await fetch("https://dev.to/api/articles?top=10");
+    const response = await fetch("https://dev.to/api/articles?top=50");
     const articles = await response.json();
 
     return articles.map(article => ({
@@ -41,10 +43,11 @@ async function fetchDevTo() {
         source: "Dev.to",
         description: article.description || "",
         image: "assets/devto.png",
-        publishedAt : new Date(article.published_at)
+        publishedAt: new Date(article.published_at)
     }));
 }
 
+// Fetch Reddit
 async function fetchReddit(subreddit = "programming") {
     const response = await fetch(`http://localhost:3000/reddit/${subreddit}`);
     const data = await response.json();
@@ -61,8 +64,6 @@ async function fetchReddit(subreddit = "programming") {
     }));
 }
 
-
-
 // Master fetch
 async function fetchAllSources() {
     showSkeletons();
@@ -74,15 +75,15 @@ async function fetchAllSources() {
         ]);
 
         allStories = [...hnStories, ...devtoStories, ...redditStories];
+        allStories.sort((a, b) => b.publishedAt - a.publishedAt); // newest first
 
-        renderStories(getFilteredStories());
+        resetAndRender();
     } catch (error) {
         console.error("Error fetching sources:", error);
     }
 }
 
-
-// Filtering logic
+// Filtering and search
 function getFilteredStories() {
     let stories = (currentFilter === "All")
         ? [...allStories]
@@ -96,26 +97,23 @@ function getFilteredStories() {
         );
     }
 
-    stories.sort((a, b) => b.publishedAt - a.publishedAt)
     return stories;
 }
 
-// Render
-function renderStories(stories) {
-    hideSkeletons();
+// Render chunk of stories
+function renderStoriesChunk(stories) {
     const container = document.getElementById("cards-placeholder");
-    container.innerHTML = `<div class="card-container"></div>`;
-    const cardContainer = container.querySelector(".card-container");
-
-    if (stories.length === 0) {
-        cardContainer.innerHTML = `<p class="no-results">No results found.</p>`;
+    let cardContainer = container.querySelector(".card-container");
+    if (!cardContainer) {
+        container.innerHTML = `<div class="card-container"></div>`;
+        cardContainer = container.querySelector(".card-container");
     }
 
+    const chunk = stories.slice(currentIndex, currentIndex + storiesPerPage);
 
-    stories.forEach(story => {
+    chunk.forEach(story => {
         const card = document.createElement("div");
         card.classList.add("card");
-        
         card.innerHTML = `
             <div class="card-image">
                 <img src="${story.image}" alt="${story.source}">
@@ -127,9 +125,7 @@ function renderStories(stories) {
             <div class="card-footer">
                 <div class="author">
                     By <span class="name">${story.author || "Unknown"}</span> • ${story.score ? `${story.score} points` : ""} 
-                    <div class="date">
-                        ${story.publishedAt.toLocaleDateString()}
-                    </div>
+                    <div class="date">${story.publishedAt.toLocaleDateString()}</div>
                 </div>
                 <div class="favorite-icon" data-url="${story.url}">&#9734;</div>
             </div>
@@ -137,10 +133,21 @@ function renderStories(stories) {
         cardContainer.appendChild(card);
     });
 
-    document.dispatchEvent(new Event("newsLoaded"));
+    currentIndex += chunk.length;
+    attachFavorites(cardContainer);
+}
 
+// Reset and render (for new filter/search)
+function resetAndRender() {
+    currentIndex = 0;
+    const container = document.getElementById("cards-placeholder");
+    container.innerHTML = `<div class="card-container"></div>`;
+    renderStoriesChunk(getFilteredStories());
+}
+
+// Favorite icons
+function attachFavorites(cardContainer) {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-
     cardContainer.querySelectorAll(".favorite-icon").forEach(icon => {
         const url = icon.dataset.url;
         if (favorites.includes(url)) {
@@ -152,8 +159,7 @@ function renderStories(stories) {
 
         icon.addEventListener("click", () => {
             if (favorites.includes(url)) {
-                const index = favorites.indexOf(url);
-                favorites.splice(index, 1);
+                favorites.splice(favorites.indexOf(url), 1);
                 icon.classList.remove("active");
                 icon.innerHTML = "☆";
             } else {
@@ -164,33 +170,43 @@ function renderStories(stories) {
             localStorage.setItem("favorites", JSON.stringify(favorites));
         });
     });
-
 }
 
-// Navbar filters
+// Filters
 function setupFilterButtons() {
     const buttons = document.querySelectorAll(".filter-btn");
-
     buttons.forEach(button => {
         button.addEventListener("click", () => {
             buttons.forEach(btn => btn.classList.remove("active"));
             button.classList.add("active");
-
             currentFilter = button.textContent.trim();
-            renderStories(getFilteredStories());
+            resetAndRender();
         });
     });
 }
 
-
-// Search input
+// Search
 function setupSearch() {
     const searchInput = document.querySelector(".input");
     searchInput.addEventListener("input", e => {
         currentSearch = e.target.value.trim();
-        renderStories(getFilteredStories());
+        resetAndRender();
     });
 }
+
+// Infinite scroll
+window.onscroll = () => {
+    const scrollTop = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+
+    if (scrollTop + windowHeight >= documentHeight - 100) {
+        const filteredStories = getFilteredStories();
+        if (currentIndex < filteredStories.length) {
+            renderStoriesChunk(filteredStories);
+        }
+    }
+};
 
 // Init
 document.addEventListener("DOMContentLoaded", () => {
