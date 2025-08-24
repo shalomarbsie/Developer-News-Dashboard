@@ -12,7 +12,7 @@ async function fetchHackerNews() {
     const storyIds = await response.json();
 
     const stories = await Promise.all(
-        storyIds.slice(0, 50).map(async id => { // fetch more for infinite scroll
+        storyIds.slice(0, 50).map(async id => {
             const storyResponse = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
             const data = await storyResponse.json();
             return {
@@ -22,7 +22,7 @@ async function fetchHackerNews() {
                 score: data.score,
                 source: "Hacker News",
                 description: data.text || "", 
-                image: "assets/hackernews.png",
+                image: "../assets/hackernews.png",
                 publishedAt: new Date(data.time * 1000)
             };
         })
@@ -32,7 +32,7 @@ async function fetchHackerNews() {
 
 // Fetch Dev.to
 async function fetchDevTo() {
-    const response = await fetch("https://dev.to/api/articles?top=50");
+    const response = await fetch("https://dev.to/api/articles?latest=50");
     const articles = await response.json();
 
     return articles.map(article => ({
@@ -42,7 +42,7 @@ async function fetchDevTo() {
         score: article.public_reactions_count,
         source: "Dev.to",
         description: article.description || "",
-        image: "assets/devto.png",
+        image: "../assets/devto.png",
         publishedAt: new Date(article.published_at)
     }));
 }
@@ -59,7 +59,7 @@ async function fetchReddit(subreddit = "programming") {
         score: post.data.score,
         source: "Reddit",
         description: post.data.selftext || "",
-        image:  "assets/reddit.png",
+        image:  "../assets/reddit.png",
         publishedAt: new Date(post.data.created_utc * 1000)
     }));
 }
@@ -207,6 +207,11 @@ window.onscroll = () => {
         }
     }
 };
+
+// Redirects to account.html
+document.getElementById('accountBtn').addEventListener('click', () => {
+    window.location.href = '../html/account.html';
+});
 
 // Init
 document.addEventListener("DOMContentLoaded", () => {

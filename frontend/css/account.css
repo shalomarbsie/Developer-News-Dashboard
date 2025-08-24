@@ -1,0 +1,104 @@
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Account Card */
+.account-card {
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.account-card h1 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: var(--text-color);
+}
+
+/* Account Info */
+.account-info {
+  text-align: left;
+}
+
+.account-info p {
+  margin: 0.8rem 0;
+  font-size: 1rem;
+  color: var(--muted-text);
+}
+
+.account-info strong {
+  color: var(--muted-text);
+}
+
+.account-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.account-btn {
+  font-family: inherit;
+  font-size: 0.95rem;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: 1px solid var(--muted-text);
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 0 .4vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+.account-btn:hover {
+  background-color: #3B82F6;
+  color: var(--btn-text);
+}
+
+.account-btn.active {
+  background-color: #3B82F6;
+  color: white;
+}
+
+.danger-btn {
+  font-family: inherit;
+  font-size: 0.95rem;
+  background-color: transparent;
+  color: #F87171;
+  border: 1px solid #F87171;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 0 .4vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+.danger-btn:hover {
+  background-color: #F87171;
+  color: white;
+  border-color: #F87171;
+}
+
+.danger-btn:active {
+  transform: scale(0.96);
+  background-color: #dc2626; /* slightly darker red */
+}
+
