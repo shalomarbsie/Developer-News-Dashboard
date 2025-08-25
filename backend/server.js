@@ -27,8 +27,7 @@ app.get("/reddit/:subreddit", async (req, res) => {
       after = data.data.after;
       if (!after) break; // no more pages
     }
-
-    console.log(`Fetched ${posts.length} posts from Reddit`);
+    
     res.json({ data: { children: posts } });
   } catch (err) {
     console.error(err);

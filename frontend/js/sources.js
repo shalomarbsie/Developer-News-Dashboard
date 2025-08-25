@@ -35,7 +35,6 @@ async function fetchDevTo() {
     const response = await fetch("https://dev.to/api/articles?per_page=50");
     const articles = await response.json(); 
 
-    console.log(articles.length);
     return articles.map(article => ({
         title: article.title,
         url: article.url,
