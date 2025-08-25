@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("newEmail").value = userData.email || "";
     document.getElementById("newAge").value = userData.age || "";
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         const updatedUsername = document.getElementById("newUsername").value.trim();
@@ -38,6 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        let hashedPassword = userData.password; // default to existing hash
+        if (updatedPassword) {
+            hashedPassword = await bcrypt.hash(updatedPassword, 10);
+        }
 
         users = users.map(user => {
             if (user.email === userData.email) {

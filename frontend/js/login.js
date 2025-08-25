@@ -1,32 +1,34 @@
-    document.addEventListener("DOMContentLoaded", () => {
-        const loginForm = document.getElementById("loginForm");
+document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.getElementById("loginForm");
 
-        loginForm.addEventListener("submit", (e) => {
-            e.preventDefault();
+    loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-            const email = document.getElementById("loginEmail").value.trim();
-            const password = document.getElementById("loginPassword").value.trim();
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value.trim();
 
-            if (!email || !password) {
-                alert("Please fill in all fields.");
-                return;
-            }
+        if (!email || !password) {
+            alert("Please fill in all fields.");
+            return;
+        }
 
-            // Get all registered users
-            const users = JSON.parse(localStorage.getItem("users")) || [];
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        const user = users.find(u => u.email === email);
 
-            // Find matching user
-            const user = users.find(u => u.email === email && u.password === password);
+        if (!user) {
+            alert("Invalid email or password.");
+            return;
+        }
 
-            if (!user) {
-                alert("Invalid email or password.");
-                return;
-            }
+        const isMatch = await dcodeIO.bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            alert("Invalid email or password.");
+            return;
+        }
 
-            // ✅ Save logged-in user in both keys
-            localStorage.setItem("loggedInUser", JSON.stringify(user)); // Optional, just the username
-            localStorage.setItem("userData", JSON.stringify(user)); // Full user data
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
+        localStorage.setItem("userData", JSON.stringify(user));
 
-            window.location.href = "account.html";
-        });
+        window.location.href = "account.html";
     });
+});
