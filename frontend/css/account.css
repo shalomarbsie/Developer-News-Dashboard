@@ -98,3 +98,44 @@ body {
   background-color: #dc2626; 
 }
 
+.auth-card {
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+.auth-card input {
+  width: 90%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  border: 1px solid var(--muted-text);
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+.auth-card button {
+  margin-top: 1rem;
+  width: 50%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  cursor: pointer;
+}
+.auth-card button:hover {
+  opacity: 0.9;
+  color: white;
+}
+.auth-card a {
+  color: #3B82F6;
+  text-decoration: none;
+}
+.auth-card a:hover {
+  text-decoration: underline;
+}
