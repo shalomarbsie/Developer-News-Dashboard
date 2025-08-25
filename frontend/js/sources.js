@@ -3,7 +3,7 @@ import { showSkeletons, hideSkeletons } from "./loader.js";
 let allStories = [];
 let currentFilter = "All";
 let currentSearch = "";
-let storiesPerPage = 10;
+let storiesPerPage = 50;
 let currentIndex = 0;
 
 // Fetch Hacker News
@@ -32,9 +32,10 @@ async function fetchHackerNews() {
 
 // Fetch Dev.to
 async function fetchDevTo() {
-    const response = await fetch("https://dev.to/api/articles?latest=50");
-    const articles = await response.json();
+    const response = await fetch("https://dev.to/api/articles?per_page=50");
+    const articles = await response.json(); 
 
+    console.log(articles.length);
     return articles.map(article => ({
         title: article.title,
         url: article.url,
@@ -194,19 +195,26 @@ function setupSearch() {
     });
 }
 
-// Infinite scroll
-window.onscroll = () => {
+// Max cards to render
+const MAX_STORIES = 150;
+
+// extend scroll
+window.addEventListener("scroll", () => {
     const scrollTop = window.scrollY;
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
 
+    // Check if near bottom
     if (scrollTop + windowHeight >= documentHeight - 100) {
         const filteredStories = getFilteredStories();
-        if (currentIndex < filteredStories.length) {
+
+        // Limit total rendered cards to MAX_STORIES
+        if (currentIndex < filteredStories.length && currentIndex < MAX_STORIES) {
             renderStoriesChunk(filteredStories);
         }
     }
-};
+});
+
 
 // Redirects to account.html
 document.getElementById('accountBtn').addEventListener('click', () => {
