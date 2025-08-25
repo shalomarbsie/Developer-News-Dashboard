@@ -5,6 +5,7 @@
   --surface-color: white;     /* Navbar/cards in light */
   --muted-text: #6B7280;      /* Slightly darker gray for muted text */
   --input-bg: #E5E7EB;        /* Light gray input */
+  --input-text: #111827;      /* Dark, readable text in light mode */
   --btn-bg: #E5E7EB;          /* Light gray buttons */
   --btn-text: #1F2937;        /* Dark text */
   --skeleton-bg: #e0e0e0;
@@ -17,6 +18,7 @@ body.dark-mode {
   --surface-color: #374151;   /* Card/Surface */
   --muted-text: #9CA3AF;      /* Light muted gray */
   --input-bg: #374151;        /* Dark gray input */
+  --input-text: #F9FAFB;      /* Light text for dark mode */
   --btn-bg: #374151;          /* Dark button */
   --btn-text: #F9FAFB;        /* White text */
   --skeleton-bg: #555555;

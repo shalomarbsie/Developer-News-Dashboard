@@ -115,9 +115,17 @@ body {
   margin: 0.5rem 0;
   border-radius: 8px;
   border: 1px solid var(--muted-text);
+  outline: none;
   background-color: var(--input-bg);
-  color: var(--text-color);
+  color: var(--input-text);
+  caret-color: var(--input-text);
+  -webkit-text-fill-color: var(--input-text)
 }
+
+.auth-card input::placeholder {
+  color: rgba(255, 255, 255, 0.7); 
+}
+
 .auth-card button {
   margin-top: 1rem;
   width: 50%;
@@ -139,3 +147,24 @@ body {
 .auth-card a:hover {
   text-decoration: underline;
 }
+
+.home-btn {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: 1px solid var(--muted-text);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: 0.3s;
+  z-index: 1000;
+}
+
+.home-btn:hover {
+  background-color: #3B82F6;
+  color: white;
+}
+

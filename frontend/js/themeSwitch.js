@@ -23,6 +23,6 @@ themeSwitch.addEventListener('change', () => {
 
     const skeletons = document.querySelectorAll('.skeleton-card');
     if (skeletons.length > 0) {
-        skeletons.forEach(s => s.offsetHeight); // force a repaint (trick for some browsers)
+        skeletons.forEach(s => s.offsetHeight);
     }
 });
