@@ -11,7 +11,7 @@ body {
 }
 
 .account-card {
-  background-color: var(--surface-color);
+  background-color: var(--mid-surface);
   color: var(--text-color);
   padding: 2rem;
   border-radius: 20px;
@@ -55,11 +55,10 @@ body {
   font-size: 0.95rem;
   background-color: var(--btn-bg);
   color: var(--btn-text);
-  border: 1px solid var(--muted-text);
+  border: var(--btn-bg);
   border-radius: 0.5rem;
-  padding: 0.6rem 1.2rem;
+  padding: 0.5rem 1.2rem;
   cursor: pointer;
-  box-shadow: 0 0 .4vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
   transition: 0.3s;
   white-space: nowrap;
 }
@@ -74,16 +73,38 @@ body {
   border-color: #3B82F6;
 }
 
-.danger-btn {
+.change-detail-btn {
   font-family: inherit;
   font-size: 0.95rem;
-  background-color: transparent;
-  color: #F87171;
-  border: 1px solid #F87171;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: var(--btn-bg);
   border-radius: 0.5rem;
   padding: 0.6rem 1.2rem;
   cursor: pointer;
-  box-shadow: 0 0 .4vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+.change-detail-btn:hover {
+  background-color: #F59E0B;
+  color: var(--btn-text);
+}
+
+.change-detail-btn:active {
+  background-color: #F59E0B;
+  border-color: #F59E0B;
+}
+
+.danger-btn {
+  font-family: inherit;
+  font-size: 0.95rem;
+  background-color: var(--btn-bg);
+  color: #F87171;
+  border: var(--btn-bg);
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
   transition: 0.3s;
   white-space: nowrap;
 }
@@ -99,7 +120,7 @@ body {
 }
 
 .auth-card {
-  background-color: var(--surface-color);
+  background-color: var(--m);
   color: var(--text-color);
   padding: 2rem;
   border-radius: 20px;
@@ -155,12 +176,12 @@ body {
   padding: 0.5rem 1rem;
   background-color: var(--btn-bg);
   color: var(--btn-text);
-  border: 1px solid var(--muted-text);
   border-radius: 0.5rem;
   text-decoration: none;
   font-size: 0.9rem;
   transition: 0.3s;
   z-index: 1000;
+  box-shadow: 0 0 .2vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
 }
 
 .home-btn:hover {

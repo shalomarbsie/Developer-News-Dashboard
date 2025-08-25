@@ -24,9 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const accountBtn = document.getElementById("accountBtn");
     if (accountBtn) {
         if (!localStorage.getItem("loggedInUser")) {
-            accountBtn.textContent = "Signup";
+            accountBtn.textContent = "Login";
             accountBtn.addEventListener("click", () => {
-                window.location.href = "signup.html"; 
+                window.location.href = "login.html"; 
             });
         } else {
             accountBtn.textContent = "Account";
@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 🚪 Logout button logic
     const logoutBtn = document.getElementById("logoutBtn");
     if (logoutBtn) {
         logoutBtn.addEventListener("click", () => {
@@ -45,12 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ✏️ Change details (placeholder)
     const changeBtn = document.getElementById("changeBtn");
     if (changeBtn) {
         changeBtn.addEventListener("click", () => {
-            alert("Feature coming soon: Edit account details.");
-            // Future: redirect to edit page or open modal
+            window.location.href = "change-details.html";
         });
     }
 
@@ -77,9 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-
-
-    // 🔐 Optional: Redirect to home if visiting account.html while logged out
     if (window.location.pathname.includes("account.html") && !localStorage.getItem("loggedInUser")) {
         window.location.href = "index.html";
     }

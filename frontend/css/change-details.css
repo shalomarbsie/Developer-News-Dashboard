@@ -1,0 +1,91 @@
+/* change-details.css */
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: Arial, sans-serif;
+  transition: background 0.3s, color 0.3s;
+}
+
+.container {
+  background: var(--mid-surface);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  transition: background 0.3s;
+}
+
+h1 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: var(--text-color);
+}
+
+input {
+  width: 90%;
+  padding: 0.6rem;
+  margin: 0.5rem 0;
+  border: none;
+  border-radius: 6px;
+  background: var(--input-bg);
+  color: var(--input-text);
+  font-size: 1rem;
+  outline: none;
+  transition: background 0.3s, color 0.3s;
+}
+
+input:focus {
+  outline: 2px solid var(--muted-text);
+}
+
+.detail-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.change-details-btn {
+  margin-top: 1rem;
+  padding: 0.7rem 1rem;
+  border: none;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border: var(--muted-text);
+  cursor: pointer;
+  border-radius: 0.5rem;
+  width: 40%;
+  font-size: 1rem;
+  transition: background 0.3s, color 0.3s, transform 0.1s;
+}
+
+.change-details-btn:hover {
+  background: #3B82F6;
+}
+
+.back-button {
+  margin-top: 1rem;
+  padding: 0.7rem 1rem;
+  border: none;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border: var(--muted-text);
+  cursor: pointer;
+  border-radius: 0.5rem;
+  width: 40%;
+  font-size: 1rem;
+  transition: background 0.3s, color 0.3s, transform 0.1s;
+}
+
+.back-button:hover {
+  background: #F59E0B;
+}

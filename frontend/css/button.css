@@ -7,11 +7,13 @@
   background-color: var(--btn-bg);
   color: var(--btn-text);
   border: 1px solid var(--muted-text);
+  border-radius: 0.5rem ;
   transition: 0.3s;
+  box-shadow: 0 0 .2vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent
 }
 
 .account-btn:hover {
-  background-color: var(--muted-text);
+  background-color: #F59E0B;
   color: var(--btn-text);
 }
 
@@ -29,7 +31,7 @@
   border-radius: 0.5rem;
   padding: 0.6rem 1.2rem;
   cursor: pointer;
-  box-shadow: 0 0 .4vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
+  box-shadow: 0 0 .2vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
   transition: 0.3s;
 }
 

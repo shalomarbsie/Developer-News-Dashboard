@@ -1,8 +1,21 @@
+/* Reset browser autofill colors */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 9999s ease-in-out 0s, color 9999s ease-in-out 0s;
+    -webkit-text-fill-color: var(--input-text) !important;
+    box-shadow: 0 0 0px 1000px var(--input-bg) inset !important;
+    border: 1px solid var(--muted-text); /* optional: match your border color */
+}
+
+
 :root {
   /* Light mode colors */
   --bg-color: #F9FAFB;        /* Neutral Light */
   --text-color: #1F2937;      /* Neutral Dark */
   --surface-color: white;     /* Navbar/cards in light */
+  --mid-surface: #F3F4F6;    
   --muted-text: #6B7280;      /* Slightly darker gray for muted text */
   --input-bg: #E5E7EB;        /* Light gray input */
   --input-text: #111827;      /* Dark, readable text in light mode */
@@ -16,6 +29,7 @@ body.dark-mode {
   --bg-color: #1F2937;        /* Neutral Dark */
   --text-color: #F9FAFB;      /* Neutral Light */
   --surface-color: #374151;   /* Card/Surface */
+  --mid-surface: #2B3440;
   --muted-text: #9CA3AF;      /* Light muted gray */
   --input-bg: #374151;        /* Dark gray input */
   --input-text: #F9FAFB;      /* Light text for dark mode */
