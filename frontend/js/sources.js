@@ -85,9 +85,21 @@ async function fetchAllSources() {
 
 // Filtering and search
 function getFilteredStories() {
+    const loggedInUser = localStorage.getItem("loggedInUser");
+
     let stories = (currentFilter === "All")
         ? [...allStories]
         : allStories.filter(story => story.source === currentFilter);
+
+    if (currentFilter === "Favorites") {
+        if (!loggedInUser) {
+            showLoginMessage(); // We'll create this helper
+            return [];
+        }
+
+        const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+        stories = allStories.filter(story => favorites.includes(story.url));
+    }
 
     if (currentSearch) {
         const query = currentSearch.toLowerCase();
@@ -100,8 +112,17 @@ function getFilteredStories() {
     return stories;
 }
 
+function showLoginMessage() {
+    const container = document.getElementById("cards-placeholder");
+    container.innerHTML = `
+        <div class="login-message" style="text-align:center; margin-top: 50px; font-size: 1.2rem;">
+            Log in to add favorite articles
+        </div>
+    `;
+}
+
 // Render chunk of stories
-function renderStoriesChunk(stories) {
+export function renderStoriesChunk(stories) {
     const container = document.getElementById("cards-placeholder");
     let cardContainer = container.querySelector(".card-container");
     if (!cardContainer) {
@@ -148,6 +169,8 @@ function resetAndRender() {
 // Favorite icons
 function attachFavorites(cardContainer) {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+    const loggedInUser = localStorage.getItem("loggedInUser");
+
     cardContainer.querySelectorAll(".favorite-icon").forEach(icon => {
         const url = icon.dataset.url;
         if (favorites.includes(url)) {
@@ -158,6 +181,11 @@ function attachFavorites(cardContainer) {
         }
 
         icon.addEventListener("click", () => {
+            if(!loggedInUser) {
+                alert("Log in to favorite articles");
+                return;
+            }
+
             if (favorites.includes(url)) {
                 favorites.splice(favorites.indexOf(url), 1);
                 icon.classList.remove("active");

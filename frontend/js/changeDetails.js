@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let hashedPassword = userData.password; // default to existing hash
         if (updatedPassword) {
-            hashedPassword = await bcrypt.hash(updatedPassword, 10);
+            hashedPassword = await dcodeIO.bcrypt.hash(updatedPassword, 10);
         }
 
         users = users.map(user => {
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     username: updatedUsername,
                     email: updatedEmail,
                     age: updatedAge,
-                    password: updatedPassword || user.password,
+                    password: hashedPassword,
                 };
             }
             return user;
