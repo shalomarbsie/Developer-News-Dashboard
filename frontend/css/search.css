@@ -14,3 +14,12 @@
   transition: .5s;
 }
 
+@media (max-width: 768px) {
+  .input {
+    width: 50%;        
+    max-width: 100%;    
+    font-size: 0.9rem;  
+    padding: 0.5rem 0.8rem;
+    border-radius: 0.5rem;
+  }
+}

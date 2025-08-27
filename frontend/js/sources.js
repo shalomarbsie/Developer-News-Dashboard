@@ -121,6 +121,14 @@ function showLoginMessage() {
     `;
 }
 
+function truncateWords(str, numWords) {
+  if (!str) return "";
+  const words = str.split(/\s+/); // Split by spaces
+  return words.length > numWords 
+    ? words.slice(0, numWords).join(" ") + "…" 
+    : str;
+}
+
 // Render chunk of stories
 export function renderStoriesChunk(stories) {
     const container = document.getElementById("cards-placeholder");
@@ -141,11 +149,11 @@ export function renderStoriesChunk(stories) {
             </div>
             <div class="category">${story.source}</div>
             <div class="heading">
-                <a href="${story.url || "#"}" target="_blank">${story.title}</a>
+                <a href="${story.url || "#"}" target="_blank">${truncateWords(story.title, 10)}</a>
             </div>
             <div class="card-footer">
                 <div class="author">
-                    By <span class="name">${story.author || "Unknown"}</span> • ${story.score ? `${story.score} points` : ""} 
+                    By <span class="name">${story.author || "Unknown"}</span>
                     <div class="date">${story.publishedAt.toLocaleDateString()}</div>
                 </div>
                 <div class="favorite-icon" data-url="${story.url}">&#9734;</div>

@@ -181,7 +181,6 @@ body {
   font-size: 0.9rem;
   transition: 0.3s;
   z-index: 1000;
-  box-shadow: 0 0 .2vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
 }
 
 .home-btn:hover {
@@ -189,3 +188,124 @@ body {
   color: white;
 }
 
+@media (min-width: 320px) {
+  p {
+    font-size: 0.7rem;
+  }
+
+  .auth-card input {
+    font-size: 0.6rem;
+    margin: 0.5rem;
+  }
+
+  .auth-card button {
+    font-size: 0.6rem;
+  }
+
+  .account-card h1 { font-size: 1rem}
+  .account-card p { font-size: 0.7rem;}
+  .account-card, .auth-card { padding: 2rem; width: 60% }
+  .account-btn, .change-detail-btn, .danger-btn, .home-btn { font-size: 0.6rem; padding: 0.4rem 0.3rem; border-radius: 0.2rem; }
+}
+
+
+@media (min-width: 375px) {
+  .auth-card button {
+    font-size: 0.7rem;
+  }
+
+  .auth-card input {
+    font-size: 1rem;
+    margin: 1rem;
+  }
+
+  .account-card h1 { font-size: 1.2rem}
+  .account-card p { font-size: 0.8rem;}
+  .account-card, .auth-card { width:65% }
+  .account-btn, .change-detail-btn, .danger-btn, .home-btn { font-size: 0.7rem; }
+}
+
+@media (min-width: 425px) {
+  p {
+    font-size: 1rem;
+  }
+
+  .auth-card button {
+    font-size: 1rem;
+  }
+
+  .account-card h1 { font-size: 1.4rem}
+  .account-card p { font-size: 1rem;}
+  .account-card, .auth-card { width: 70% }
+  .account-btn, .change-detail-btn, .danger-btn, .home-btn { font-size: 0.92rem; }
+}
+
+@media (min-width: 768px) {
+  p {
+    font-size: 1rem;
+  }
+  .auth-card input {
+    font-size: 1rem;
+  }
+  .account-card h1 { font-size: 1.5rem}
+  .account-card p { font-size: 1rem;}
+  .account-card, .auth-card { width: 40%; padding: 2.5rem; }
+  .account-btn, .change-detail-btn, .danger-btn, .home-btn { font-size: 0.96rem; padding: 0.5rem 0.5 rem; }
+}
+
+/* Laptop (1024px) - spacious layout */
+@media (min-width: 1024px) {
+  p {
+    font-size: 1.2rem;
+  }
+  .auth-card input {
+    font-size: 1.5rem;
+  }
+
+  .auth-card button {
+    font-size: 1.2rem;
+  }
+
+  .account-actions { margin-top: 2rem;}
+  .account-card h1 { font-size: 1.5rem}
+  .account-card p { font-size: 1.2rem;}
+  .account-card, .auth-card { width: 40%; padding: 3rem; }
+  .account-btn, .change-detail-btn, .danger-btn, .home-btn { font-size: 1.1rem; padding: 0.5rem 0.8rem }
+}
+
+@media (min-width: 1440px) {
+  p {
+    font-size: 1.3rem;
+  }
+  .account-actions { margin-top: 2rem;}
+  .account-card h1 { font-size: 1.5rem}
+  .account-card p { font-size: 1.2rem;}
+  .account-card, .auth-card { width: 50%; padding: 3rem; }
+  .account-btn, .change-detail-btn, .danger-btn, .home-btn { font-size: 1.14rem; padding: 0.5rem 0.8rem }
+}
+
+@media (min-width: 2560px) {
+  p {
+    font-size: 3rem;
+    margin-top: 2rem;
+  }
+  .auth-card input {
+    font-size: 3rem;
+    margin: 2rem;
+    padding: 2rem;
+    border-radius: 10px;
+  }
+  .auth-card button {
+    font-size: 3rem;
+    border-radius: 20px;
+    padding: 1.7rem 1rem;
+    margin-top: 3rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .account-actions { margin-top: 5rem; padding: 1rem 15rem; gap: 2rem;}
+  .account-card h1 { font-size: 4rem; margin: 3rem}
+  .account-card p { font-size: 3rem; margin: 3rem;}
+  .account-card, .auth-card { height: 60%; min-width: 40%; padding: 7rem 5rem;}
+  .account-btn, .change-detail-btn, .danger-btn, .home-btn { font-size: 3rem; padding: 1rem 1rem; border-radius: 10px; }
+}

@@ -43,3 +43,51 @@
   align-items: center;
   flex-shrink: 0;    /* prevents it from squeezing search bar */
 }
+
+@media (max-width: 768px) {
+  .navbar {
+    align-self: center;
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+  }
+
+  .navbar-top {
+    flex-direction: column; /* stack logo, search, and right-controls */
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .navbar-top > .input {
+    min-width: auto;
+    max-width: 100%;
+    width: 92%;
+  }
+
+  .right-controls {
+    justify-content: space-between;
+    gap: 0.5rem;
+    flex-wrap: wrap; /* wrap buttons if needed */
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .navbar-bottom {
+    flex-wrap: wrap; /* buttons go to next line if needed */
+    gap: 0.5rem;
+  }
+
+  .filter-btn {
+    flex: 1 1 45%; /* buttons roughly half width */
+    text-align: center;
+    padding: 0.4rem 0.5rem;
+  }
+}
+
+@media (min-width: 2560px) {
+  .logo {
+    font-size: 4rem;
+  }
+}
