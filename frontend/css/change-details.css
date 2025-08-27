@@ -1,193 +1,252 @@
-/* change-details.css */
-
+/* ===========================
+   Base Styles
+=========================== */
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
-  background: var(--bg-color);
-  color: var(--text-color);
   font-family: Arial, sans-serif;
-  transition: background 0.3s, color 0.3s;
-}
-
-.container {
-  background: var(--mid-surface);
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  text-align: center;
-  transition: background 0.3s;
-}
-
-h1 {
-  margin-bottom: 1.5rem;
-  font-size: 1.8rem;
+  background-color: var(--bg-color);
   color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }
 
-input {
+/* ===========================
+   Auth Card
+=========================== */
+.auth-card {
+  background-color: var(--mid-surface);
+  color: var(--text-color);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   width: 90%;
-  padding: 0.6rem;
-  margin: 0.5rem 0;
-  border: none;
-  border-radius: 6px;
-  background: var(--input-bg);
-  color: var(--input-text);
-  font-size: 1rem;
-  outline: none;
-  transition: background 0.3s, color 0.3s;
+  max-width: 400px;
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
-input:focus {
+/* ===========================
+   Logo
+=========================== */
+.logo {
+  font-size: 1.8rem; /* smaller than before */
+  font-weight: bold;
+  color: var(--text-color);
+  font-style: italic;
+  margin-bottom: 1rem;
+  white-space: nowrap;
+}
+
+/* ===========================
+   Inputs
+=========================== */
+.auth-card input {
+  width: 90%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  border: 1px solid var(--muted-text);
+  outline: none;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  caret-color: var(--input-text);
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.auth-card input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.auth-card input:focus {
   outline: 2px solid var(--muted-text);
 }
 
+/* ===========================
+   Buttons
+=========================== */
 .detail-actions {
   display: flex;
-  gap: 1rem;
-  margin-top: 1.5rem;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 1%;
   flex-wrap: nowrap;
+  margin-top: 1.5rem;
 }
 
-.change-details-btn {
-  margin-top: 1rem;
-  padding: 0.7rem 1rem;
+.account-btn,
+.secondary-btn {
+  flex: 1;
+  padding: 0.8rem;
   border: none;
-  background: var(--btn-bg);
-  color: var(--btn-text);
-  border: var(--muted-text);
+  border-radius: 10px;
   cursor: pointer;
-  border-radius: 0.5rem;
-  width: 40%;
   font-size: 1rem;
-  transition: background 0.3s, color 0.3s, transform 0.1s;
+  transition: background 0.3s, color 0.3s;
+  box-sizing: border-box;
 }
 
-.change-details-btn:hover {
-  background: #3B82F6;
-}
-
-.back-button {
-  margin-top: 1rem;
-  padding: 0.7rem 1rem;
-  border: none;
-  background: var(--btn-bg);
+.account-btn {
+  background-color: var(--btn-bg);
   color: var(--btn-text);
-  border: var(--muted-text);
-  cursor: pointer;
-  border-radius: 0.5rem;
-  width: 40%;
-  font-size: 1rem;
-  transition: background 0.3s, color 0.3s, transform 0.1s;
 }
 
-.back-button:hover {
-  background: #F59E0B;
+.secondary-btn {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
 }
 
-@media (min-width: 320px) {
-  .container {
-    width: 70%;
-  }
-
-  input {
-    font-size: 0.8rem;
-  }
-
-  .back-button {
-    font-size: 0.8rem;
-  }
-
-  .change-details-btn {
-    font-size: 0.8rem;
-  }
+.account-btn:hover {
+  background-color: #3B82F6;
+  color: white;
 }
 
-@media (min-width: 768px) {
-  .container {
-    width: 50%;
-  }
-
-  input {
-    font-size: 1rem;
-  }
-
-  .back-button {
-    font-size: 1rem;
-  }
-
-  .change-details-btn {
-    font-size: 1rem;
-  }
+.secondary-btn:hover {
+  background-color: #F59E0B;
+  color: white;
 }
 
-@media (min-width: 1024px) {
-  .container {
-    width: 40%;
-  }
-
-  input {
-    font-size: 1.3rem;
-  }
-
-  .back-button {
-    font-size: 1.3rem;
-  }
-
-  .change-details-btn {
-    font-size: 1.3rem;
-  }
+/* ===========================
+   Links
+=========================== */
+.auth-card a {
+  color: #3B82F6;
+  text-decoration: none;
 }
 
-@media (min-width: 1440px) {
-  .container {
-    width: 30%;
+.auth-card a:hover {
+  text-decoration: underline;
+}
+
+/* ===========================
+   Responsive Styles
+=========================== */
+
+/* Small phones: <=425px */
+@media (max-width: 426px) {
+  .auth-card {
+    width: 90%;
+    padding: 1.2rem;
+    border-radius: 15px;
+    margin: 0 1rem;
   }
 
-  input {
+  .logo {
     font-size: 1.5rem;
   }
 
-  .back-button {
-    font-size: 1.5rem;
+  .auth-card input {
+    font-size: 0.9rem;
+    padding: 0.6rem;
   }
 
-  .change-details-btn {
-    font-size: 1.5rem;
-  }
-}
-
-@media (min-width: 2560px) {
-  .container {
-    padding: 4rem;
-    width: 30%;
-    height: 35%;
-    border-radius: 20px;
-  }
-
-  h1 {
-    font-size: 3rem;
-  }
-
-  input {
-    font-size: 2rem;
-    margin: 1rem 0;
-    border-radius: 10px;
+  .account-btn,
+  .secondary-btn {
+    width: 100%;
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
   }
 
   .detail-actions {
-    margin-top: 3.5rem;
+    flex-direction: column;
+  }
+}
+
+/* Medium devices: >=768px */
+@media (min-width: 768px) {
+  .auth-card {
+    max-width: 450px;
+    padding: 2.5rem;
   }
 
-  .change-details-btn {
-    font-size: 2rem;
+  .logo {
+    font-size: 2.2rem;
   }
 
-  .back-button {
+  .auth-card input {
+    font-size: 1rem;
+  }
+
+  .account-btn,
+  .secondary-btn {
+    font-size: 1rem;
+  }
+
+  .detail-actions {
+    flex-direction: row;
+  }
+}
+
+/* Large devices: >=1024px */
+@media (min-width: 1024px) {
+  .auth-card {
+    max-width: 500px;
+    padding: 3rem;
+  }
+
+  .auth-card input,
+  .account-btn,
+  .secondary-btn {
+    font-size: 1.1rem;
+  }
+}
+
+/* Extra large: >=1440px */
+@media (min-width: 1440px) {
+  .auth-card {
+    max-width: 600px;
+    padding: 3.5rem;
+  }
+
+  .logo {
+    font-size: 2.5rem;
+  }
+
+  .auth-card input,
+  .account-btn,
+  .secondary-btn {
+    font-size: 1.3rem;
+  }
+}
+
+/* Ultra-wide: >=2560px */
+@media (min-width: 2560px) {
+  body {
+    padding: 3rem;
+  }
+
+  .auth-card {
+    width: 1400px; /* wider for large screens */
+    padding: 5rem;
+    border-radius: 30px;
+  }
+
+  .logo {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  .auth-card input {
     font-size: 2rem;
+    margin: 1rem 0;
+    padding: 1.5rem;
+    border-radius: 15px;
+  }
+
+  .account-btn,
+  .secondary-btn {
+    font-size: 2rem;
+    padding: 1.5rem;
+  }
+
+  .detail-actions {
+    gap: 2%;
+  }
+
+  .auth-card p {
+    font-size: 1.6rem; /* "Have an account? Login" text */
+    margin-top: 2rem;
   }
 }
