@@ -86,4 +86,4 @@ Evaluated by the following tools: ESLint, SonarLint, Lighthouse and NPM's vulner
 
 ### Feedback Welcome
 
-I'd love to hear your thoughts, critiques, and suggestions for improvement! Connect with me on LinkedIn [Shalom Arbsie](www.linkedin.com/in/shalom-arbsie) to share your ideas.
+I'd love to hear your thoughts, critiques, and suggestions for improvement! Connect with me on [LinkedIn](www.linkedin.com/in/shalom-arbsie)
