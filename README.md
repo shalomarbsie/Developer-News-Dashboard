@@ -13,10 +13,14 @@ Built to **practice core JavaScript skills** before learning React and to create
 
 ## Demo
 
-![Account Preview](./screenshots/account-preview.png)
-![Signup Preview](./screenshots/signup-preview.png)
-![Login Preview](./screenshots/login-preview.png)
-![Change-Details Preview](./screenshots/change-details-preview.png)
+<p align="center">
+  <img src="./screenshots/account-preview.png" alt="Account Preview" width="45%">
+  <img src="./screenshots/signup-preview.png" alt="Signup Preview" width="45%">
+</p>
+<p align="center">
+  <img src="./screenshots/login-preview.png" alt="Login Preview" width="45%">
+  <img src="./screenshots/change-details-preview.png" alt="Change Details Preview" width="45%">
+</p>
 
 [🔗 **Live Demo on Vercel**](https://your-vercel-link.vercel.app)
 
