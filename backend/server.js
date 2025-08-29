@@ -1,3 +1,4 @@
+// server.js - Simple Express server to proxy Reddit requests for local deployment
 import express from "express";
 import fetch from "node-fetch";
 import cors from "cors";
@@ -10,33 +11,33 @@ app.use(cors());
 
 // Reddit proxy route
 app.get("/reddit/:subreddit", async (req, res) => {
-  const { subreddit } = req.params;
-  let posts = [];
-  let after = null;
+const { subreddit } = req.params;
+let posts = [];
+let after = null;
 
-  try {
+try {
     while (posts.length < 50) {
-      const url = `https://www.reddit.com/r/${subreddit}/top.json?limit=25${after ? `&after=${after}` : ""}`;
-      const response = await fetch(url);
-      const data = await response.json();
+    const url = `https://www.reddit.com/r/${subreddit}/top.json?limit=25${after ? `&after=${after}` : ""}`;
+    const response = await fetch(url);
+    const data = await response.json();
 
-      const children = data.data.children;
-      if (!children.length) break;
+    const children = data.data.children;
+    if (!children.length) break;
 
-      posts = posts.concat(children);
-      after = data.data.after;
-      if (!after) break; // no more pages
+    posts = posts.concat(children);
+    after = data.data.after;
+    if (!after) break; // no more pages
     }
     
     res.json({ data: { children: posts } });
-  } catch (err) {
+} catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to fetch Reddit" });
-  }
+}
 });
 
 
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+console.log(`Server running on http://localhost:${PORT}`);
 });

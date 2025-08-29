@@ -47,10 +47,43 @@ async function fetchDevTo() {
     }));
 }
 
-// Fetch Reddit
+// Robust fetch helper
+async function safeFetchJson(url) {
+    try {
+        const res = await fetch(url);
+        if (!res.ok) {
+            console.warn(`safeFetchJson: non-OK response for ${url}: ${res.status}`);
+            return null;
+        }
+        // try parse JSON safely
+        const text = await res.text();
+        try {
+            return JSON.parse(text);   
+        } catch (parseErr) {
+            console.warn(`safeFetchJson: failed to parse JSON from ${url}. Response preview:`, text.slice(0, 200));
+            return null;
+        }
+    } catch (err) {
+        console.warn(`safeFetchJson: network/error fetching ${url}`, err);
+        return null;
+    }
+}
+
+// fetch Reddit via local proxy or Vercel
 async function fetchReddit(subreddit = "programming") {
-    const response = await fetch(`http://localhost:3000/reddit/${subreddit}`);
-    const data = await response.json();
+    const localUrl = `http://localhost:3000/reddit/${encodeURIComponent(subreddit)}`;
+    const vercelUrl = `/api/reddit?subreddit=${encodeURIComponent(subreddit)}`;
+
+    let data = await safeFetchJson(localUrl);
+    if (!data) {
+        console.info(`fetchReddit: local proxy failed, trying fallback: ${vercelUrl}`);
+        data = await safeFetchJson(vercelUrl);
+    }
+
+    if (!data || !data.data || !Array.isArray(data.data.children)) {
+        console.warn("fetchReddit: no reddit data available from any endpoint.", { localUrl, vercelUrl, data });
+        return [];
+    }
 
     return data.data.children.map(post => ({
         title: post.data.title,
@@ -59,7 +92,7 @@ async function fetchReddit(subreddit = "programming") {
         score: post.data.score,
         source: "Reddit",
         description: post.data.selftext || "",
-        image:  "../assets/reddit.png",
+        image: "../assets/reddit.png",
         publishedAt: new Date(post.data.created_utc * 1000)
     }));
 }
@@ -75,15 +108,14 @@ async function fetchAllSources() {
         ]);
 
         allStories = [...hnStories, ...devtoStories, ...redditStories];
-        allStories.sort((a, b) => b.publishedAt - a.publishedAt); // newest first
+        allStories.sort((a, b) => b.publishedAt - a.publishedAt); 
 
         resetAndRender();
     } catch (error) {
         console.error("Error fetching sources:", error);
     }
 }
-
-// Filtering and search
+// Get filtered stories
 function getFilteredStories() {
     const loggedInUser = localStorage.getItem("loggedInUser");
 
@@ -93,7 +125,7 @@ function getFilteredStories() {
 
     if (currentFilter === "Favorites") {
         if (!loggedInUser) {
-            showLoginMessage(); // We'll create this helper
+            showLoginMessage(); 
             return [];
         }
 
@@ -112,6 +144,7 @@ function getFilteredStories() {
     return stories;
 }
 
+// Show login message
 function showLoginMessage() {
     const container = document.getElementById("cards-placeholder");
     container.innerHTML = `
@@ -121,9 +154,10 @@ function showLoginMessage() {
     `;
 }
 
+// Truncate words
 function truncateWords(str, numWords) {
   if (!str) return "";
-  const words = str.split(/\s+/); // Split by spaces
+  const words = str.split(/\s+/);
   return words.length > numWords 
     ? words.slice(0, numWords).join(" ") + "…" 
     : str;
