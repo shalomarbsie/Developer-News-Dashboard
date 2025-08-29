@@ -78,11 +78,11 @@ node server.js
 Evaluated by the following tools: ESLint, SonarLint, Lighthouse and NPM's vulnerability checker (```npm audit fix```)
 
 ## Lighthouse Evaluations
-![Dashboard Evaluation](.Evaluations/dashboard.pdf)
-![Login Page Evaluation](.Evaluations/login.pdf)
-![Signup Page Evaluation](.Evaluations/signup.pdf)
-![Account-Details Page Evaluation](.Evaluations/account.pdf)
-![Change-Details Page Evaluation](.Evaluations/change-details.pdf)
+![Dashboard Evaluation](.evaluations/dashboard.pdf)
+![Login Page Evaluation](.evaluations/login.pdf)
+![Signup Page Evaluation](.evaluations/signup.pdf)
+![Account-Details Page Evaluation](.evaluations/account.pdf)
+![Change-Details Page Evaluation](.evaluations/change-details.pdf)
 
 ### Feedback Welcome
 
