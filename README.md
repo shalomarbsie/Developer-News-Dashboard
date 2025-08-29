@@ -58,7 +58,7 @@ cd Developer-News-Dashboard
 cd backend
 node server.js
 ```
-## Launch the frontend
+## 3. Launch the frontend
 - Open **frontend/html/index.html** with Live Server in VS Code.
 - The app will run locally and fetch data from the backend.
 
@@ -78,12 +78,12 @@ node server.js
 Evaluated by the following tools: ESLint, SonarLint, Lighthouse and NPM's vulnerability checker (```npm audit fix```)
 
 ## Lighthouse Evaluations
-![Dashboard Evaluation](./evaluations/dashboard.pdf)
-![Login Page Evaluation](./evaluations/login.pdf)
-![Signup Page Evaluation](./evaluations/signup.pdf)
-![Account-Details Page Evaluation](./evaluations/account.pdf)
-![Change-Details Page Evaluation](./evaluations/change-details.pdf)
+- [Dashboard Evaluation](./evaluations/dashboard.pdf)
+- [Login Page Evaluation](./evaluations/login.pdf)
+- [Signup Page Evaluation](./evaluations/signup.pdf)
+- [Account-Details Page Evaluation](./evaluations/account.pdf)
+- [Change-Details Page Evaluation](./evaluations/change-details.pdf)
 
 ### Feedback Welcome
 
-I'd love to hear your thoughts, critiques, and suggestions for improvement! Connect with me on [LinkedIn](https://www.linkedin.com/in/shalom-arbsie)
+I'd love to hear your thoughts, critiques, and suggestions for improvement! Connect with me on [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin)](https://www.linkedin.com/in/shalom-arbsie)
