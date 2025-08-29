@@ -13,7 +13,6 @@ Built to **practice core JavaScript skills** before learning React and to create
 
 ## Demo
 
-![Dashboard Preview](./screenshots/dashboard-demo.gif)  
 ![Account Preview](./screenshots/account-preview.png)
 ![Signup Preview](./screenshots/signup-preview.png)
 ![Login Preview](./screenshots/login-preview.png)
