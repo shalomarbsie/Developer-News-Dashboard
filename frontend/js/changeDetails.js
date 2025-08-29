@@ -1,3 +1,5 @@
+/* global dcodeIO */
+
 document.addEventListener("DOMContentLoaded", () => {
     const userData = JSON.parse(localStorage.getItem("userData"));
 

@@ -1,4 +1,4 @@
-import { showSkeletons, hideSkeletons } from "./loader.js";
+import { showSkeletons } from "./loader.js";
 
 let allStories = [];
 let currentFilter = "All";

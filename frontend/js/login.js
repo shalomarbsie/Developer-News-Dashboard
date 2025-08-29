@@ -1,3 +1,5 @@
+/* global dcodeIO */
+
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.getElementById("loginForm");
 
