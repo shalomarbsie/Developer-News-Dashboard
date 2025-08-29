@@ -13,7 +13,6 @@ Built to **practice core JavaScript skills** before learning React and to create
 
 ## Demo
 
-![Dashboard Preview](./screenshots/dashboard-demo.gif)  
 ![Account Preview](./screenshots/account-preview.png)
 ![Signup Preview](./screenshots/signup-preview.png)
 ![Login Preview](./screenshots/login-preview.png)
@@ -58,7 +57,7 @@ cd Developer-News-Dashboard
 cd backend
 node server.js
 ```
-## Launch the frontend
+## 3. Launch the frontend
 - Open **frontend/html/index.html** with Live Server in VS Code.
 - The app will run locally and fetch data from the backend.
 
@@ -78,12 +77,12 @@ node server.js
 Evaluated by the following tools: ESLint, SonarLint, Lighthouse and NPM's vulnerability checker (```npm audit fix```)
 
 ## Lighthouse Evaluations
-![Dashboard Evaluation](.Evaluations/dashboard.pdf)
-![Login Page Evaluation](.Evaluations/login.pdf)
-![Signup Page Evaluation](.Evaluations/signup.pdf)
-![Account-Details Page Evaluation](.Evaluations/account.pdf)
-![Change-Details Page Evaluation](.Evaluations/change-details.pdf)
+- [Dashboard Evaluation](./evaluations/dashboard.pdf)
+- [Login Page Evaluation](./evaluations/login.pdf)
+- [Signup Page Evaluation](./evaluations/signup.pdf)
+- [Account-Details Page Evaluation](./evaluations/account.pdf)
+- [Change-Details Page Evaluation](./evaluations/change-details.pdf)
 
 ### Feedback Welcome
 
-I'd love to hear your thoughts, critiques, and suggestions for improvement! Connect with me on LinkedIn ![Shalom Arbsie](https://www.linkedin.com/in/shalom-arbsie-9099bb355/) to share your ideas.
+I'd love to hear your thoughts, critiques, and suggestions for improvement! Connect with me on [LinkedIn](https://www.linkedin.com/in/shalom-arbsie)
