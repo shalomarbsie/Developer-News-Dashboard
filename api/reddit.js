@@ -13,7 +13,7 @@ async function getRedditToken() {
     headers: {
       'Authorization': `Basic ${creds}`,
       'Content-Type': 'application/x-www-form-urlencoded',
-      'User-Agent': 'web:dev-news-dashboard:v1.0.0 (by /u/YOUR_USERNAME)',
+      'User-Agent': 'web:dev-news-dashboard:v1.0.0 (by /u/Champagne-Shady)',
     },
     body: new URLSearchParams({
       grant_type: 'password',
@@ -37,7 +37,7 @@ export default async function handler(req, res) {
     const token = await getRedditToken();
 
     const redditRes = await fetch(
-      `https://oauth.reddit.com/r/${subreddit}/hot?limit=10`,
+      `https://oauth.reddit.com/r/${subreddit}/hot?limit=50`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
