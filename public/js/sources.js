@@ -47,29 +47,18 @@ async function fetchDevTo() {
     }));
 }
 
-// Robust fetch helper
+// Helper for safe fetch with JSON parsing
 async function safeFetchJson(url) {
     try {
         const res = await fetch(url);
-        if (!res.ok) {
-            console.warn(`safeFetchJson: non-OK response for ${url}: ${res.status}`);
-            return null;
-        }
-        // try parse JSON safely
-        const text = await res.text();
-        try {
-            return JSON.parse(text);   
-        } catch (parseErr) {
-            console.warn(`safeFetchJson: failed to parse JSON from ${url}. Response preview:`, text.slice(0, 200));
-            return null;
-        }
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return await res.json();
     } catch (err) {
-        console.warn(`safeFetchJson: network/error fetching ${url}`, err);
+        console.warn(`safeFetchJson failed for ${url}:`, err);
         return null;
     }
 }
 
-// fetch Reddit via local proxy or Vercel
 async function fetchReddit(subreddit = "programming") {
     const localUrl = `http://localhost:3000/reddit/${encodeURIComponent(subreddit)}`;
     const vercelUrl = `/api/reddit?subreddit=${encodeURIComponent(subreddit)}`;
@@ -287,7 +276,7 @@ window.addEventListener("scroll", () => {
 
 // Redirects to account.html
 document.getElementById('accountBtn').addEventListener('click', () => {
-    window.location.href = '../html/account.html';
+    window.location.href = '/account.html';
 });
 
 // Init

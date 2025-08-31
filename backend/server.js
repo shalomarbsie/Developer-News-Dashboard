@@ -1,4 +1,4 @@
-// server.js - Simple Express server to proxy Reddit requests for local deployment
+// server.js - simple Express server to proxy Reddit requests for local deployment
 import express from "express";
 import fetch from "node-fetch";
 import cors from "cors";
