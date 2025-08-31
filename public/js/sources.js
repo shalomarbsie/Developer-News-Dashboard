@@ -60,10 +60,16 @@ async function safeFetchJson(url) {
 }
 
 async function fetchReddit(subreddit = "programming") {
+    const isLocal = window.location.hostname === "localhost";
     const localUrl = `http://localhost:3000/reddit/${encodeURIComponent(subreddit)}`;
     const vercelUrl = `/api/reddit?subreddit=${encodeURIComponent(subreddit)}`;
 
-    let data = await safeFetchJson(localUrl);
+    let data = null;
+
+    if (isLocal) {
+        data = await safeFetchJson(localUrl);
+    }
+
     if (!data) {
         console.info(`fetchReddit: local proxy failed, trying fallback: ${vercelUrl}`);
         data = await safeFetchJson(vercelUrl);
