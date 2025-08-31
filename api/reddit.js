@@ -1,4 +1,6 @@
-// api/reddit.js (Vercel serverless version of server.js)
+// api/reddit.js
+import fetch from "node-fetch";
+
 export default async function handler(req, res) {
   const { subreddit } = req.query;
   if (!subreddit) return res.status(400).json({ error: "Missing subreddit" });
@@ -8,12 +10,28 @@ export default async function handler(req, res) {
 
   try {
     while (posts.length < 50) {
-      const url = `https://www.reddit.com/r/${subreddit}/top.json?limit=25${after ? `&after=${after}` : ""}`;
-      const response = await fetch(url);
-      if (!response.ok) throw new Error(`Reddit API error: ${response.status}`);
-      const data = await response.json();
+      const url = `https://www.reddit.com/r/${subreddit}/top.json?limit=25${
+        after ? `&after=${after}` : ""
+      }`;
 
+      console.log(`Fetching: ${url}`);
+
+      const response = await fetch(url, {
+        headers: {
+          "User-Agent": "DevNewsDashboard/1.0 (https://vercel.app/)",
+        },
+      });
+
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(
+          `Reddit API error ${response.status}: ${text || "No details"}`
+        );
+      }
+
+      const data = await response.json();
       const children = data?.data?.children || [];
+
       if (!children.length) break;
 
       posts = posts.concat(children);
@@ -21,9 +39,11 @@ export default async function handler(req, res) {
       if (!after) break;
     }
 
-    res.status(200).json({ data: { children: posts } });
+    return res.status(200).json({ data: { children: posts } });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Failed to fetch Reddit" });
+    console.error("Reddit API fetch failed:", err);
+    return res
+      .status(500)
+      .json({ error: "Failed to fetch Reddit", details: err.message });
   }
 }
