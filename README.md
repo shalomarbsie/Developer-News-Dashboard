@@ -22,7 +22,7 @@ Built to **practice core JavaScript skills** before learning React and to create
   <img src="./screenshots/change-details-preview.png" alt="Change Details Preview" width="45%">
 </p>
 
-[🔗 **Live Demo on Vercel**](https://your-vercel-link.vercel.app)
+[🔗 **Live Demo on Vercel**](https://dev-news-dashboard.vercel.app/)
 
 ## Features
 
