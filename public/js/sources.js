@@ -22,7 +22,7 @@ async function fetchHackerNews() {
                 score: data.score,
                 source: "Hacker News",
                 description: data.text || "", 
-                image: "../assets/hackernews.png",
+                image: "./assets/hackernews.png",
                 publishedAt: new Date(data.time * 1000)
             };
         })
@@ -42,7 +42,7 @@ async function fetchDevTo() {
         score: article.public_reactions_count,
         source: "Dev.to",
         description: article.description || "",
-        image: "../assets/devto.png",
+        image: "./assets/devto.png",
         publishedAt: new Date(article.published_at)
     }));
 }
@@ -60,7 +60,8 @@ async function safeFetchJson(url) {
 }
 
 async function fetchReddit(subreddit = "programming") {
-    const isLocal = window.location.hostname === "localhost";
+    console.log(window.location.hostname);
+    const isLocal = !window.location.hostname.includes("vercel.app");
     const localUrl = `http://localhost:3000/reddit/${encodeURIComponent(subreddit)}`;
     const vercelUrl = `/api/reddit?subreddit=${encodeURIComponent(subreddit)}`;
 
@@ -69,12 +70,10 @@ async function fetchReddit(subreddit = "programming") {
     if (isLocal) {
         data = await safeFetchJson(localUrl);
     }
-
     if (!data) {
         console.info(`fetchReddit: local proxy failed, trying fallback: ${vercelUrl}`);
         data = await safeFetchJson(vercelUrl);
     }
-
     if (!data || !data.data || !Array.isArray(data.data.children)) {
         console.warn("fetchReddit: no reddit data available from any endpoint.", { localUrl, vercelUrl, data });
         return [];
@@ -87,7 +86,7 @@ async function fetchReddit(subreddit = "programming") {
         score: post.data.score,
         source: "Reddit",
         description: post.data.selftext || "",
-        image: "../assets/reddit.png",
+        image: "./assets/reddit.png",
         publishedAt: new Date(post.data.created_utc * 1000)
     }));
 }
