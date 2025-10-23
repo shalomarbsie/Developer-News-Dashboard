@@ -1,106 +1,92 @@
-# Airbnb Pricing Analysis — NYC Market Insights
+# Developer News Dashboard
 
-![Python](https://img.shields.io/badge/Python-3.11%2B-blue?logo=python)
-![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-yellow?logo=pandas)
-![Seaborn](https://img.shields.io/badge/Seaborn-Visualizations-blueviolet?logo=seaborn)
-![SciPy](https://img.shields.io/badge/SciPy-Statistical%20Tests-lightgrey?logo=scipy)
-![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange?logo=jupyter)
-![License](https://img.shields.io/badge/License-MIT-green)
-![Status](https://img.shields.io/badge/Status-Completed-success)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow?logo=javascript)
+![HTML5](https://img.shields.io/badge/HTML5-Ready-orange?logo=html5)
+![CSS3](https://img.shields.io/badge/CSS3-Responsive-blue?logo=css3)
+![Express.js](https://img.shields.io/badge/Backend-Express.js-green?logo=express)
+![Vercel](https://img.shields.io/badge/Deployed-Vercel-black?logo=vercel)
+![License: MIT](https://img.shields.io/badge/License-MIT-red?logo=open-source-initiative)
+![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen)
 
----
+A **responsive, Vanilla JavaScript-powered dashboard** that aggregates **tech news from multiple sources** into one clean, minimal interface.  
+Built to **practice core JavaScript skills** before learning React and to create a tool I personally use to stay updated on developer news.
 
-## Project Overview
+## Demo
 
-This project explores **factors influencing Airbnb listing prices across New York City** using open Airbnb 2019 data.  
-The analysis combines **predictive modeling** and **statistical hypothesis testing** to uncover drivers of price variation — ultimately producing **actionable business insights** for both hosts and the platform.
+<p align="center">
+  <img src="./screenshots/account-preview.png" alt="Account Preview" width="45%">
+  <img src="./screenshots/signup-preview.png" alt="Signup Preview" width="45%">
+</p>
+<p align="center">
+  <img src="./screenshots/login-preview.png" alt="Login Preview" width="45%">
+  <img src="./screenshots/change-details-preview.png" alt="Change Details Preview" width="45%">
+</p>
 
-Key focus areas:
-- Host pricing strategy  
-- Market and neighborhood behavior  
-- The role of trust signals (e.g., Superhost status)
+[🔗 **Live Demo on Vercel**](https://your-vercel-link.vercel.app)
 
----
+## Features
 
-## Project Pipeline
+- **Search** – Quickly filter through news cards by title or content  
+- **Account management** – Sign up, log in, and manage account details  
+- **Favorite Articles** – Mark and store favorite news cards for easy access 
+- **Responsive Design** – Optimized for mobile, tablet, and desktop  
+- **Multiple Sources** – Aggregates news from multiple favorite websites  
+- **Fast & Lightweight** – Vanilla JavaScript front-end, minimal backend
 
-### **1. Data Cleaning**
-- Removed duplicates, missing prices, and invalid entries  
-- Handled outliers using log-transformation and IQR filtering  
-- Standardized column formats and categorical labels  
+## Motivation
 
-### **2️. Exploratory Data Analysis (EDA)**
-- Examined price distribution and skew  
-- Visualized price differences by borough and room type  
-- Analyzed correlations and feature importance candidates  
+I built this project because:
+1. I wanted **one simple dashboard** to access all the tech news I read daily.  
+2. I wanted to **strengthen my JavaScript skills** before diving into React.
 
-### **3️. Feature Engineering**
-- Created dummy variables for neighborhood groups and room types  
-- Log-transformed prices to stabilize variance  
-- Consolidated engineered features into `lean_features` for modeling  
-
-### **4️. Predictive Modeling**
-- Built a **Robust OLS regression model** to explain log(price)  
-- Identified key price drivers: location, room type, and host attributes  
-- Saved model artifacts, evaluation metrics, and diagnostics for reproducibility  
-
-### **5️. Statistical Deep Dives**
-Applied rigorous hypothesis testing to validate the model’s findings:
-
-| Test | Question | Method | Key Finding |
-|------|-----------|--------|--------------|
-| **Test 1** | Do entire homes in Manhattan have higher prices than Brooklyn? | Welch’s t-test | Yes, ~45% higher (p < 0.001) |
-| **Test 2** | Does room type drive price differences? | Welch’s ANOVA + Games–Howell | Yes, large effect (η² ≈ 0.40) |
-| **Test 3** | Do Superhosts charge more? | Welch’s t-test | Slightly lower prices (~11%) |
-
-### **6️. Business Insights**
-- **Room type** explains nearly 40% of price variance — the dominant pricing driver  
-- **Manhattan listings** command a clear premium due to location demand  
-- **Superhost status** improves trust and occupancy, but not necessarily price  
-- Data-driven recommendation: optimize pricing by room type and area competitiveness rather than host badges alone
-- 
----
+This project is **free for anyone** to use and is especially useful for developers, tech enthusiasts, and learners who want to keep up with tech updates.
 
 ## Tech Stack
 
-- **Languages:** Python 3.11+  
-- **Libraries:** Pandas, NumPy, SciPy, Statsmodels, Seaborn, Matplotlib, Pingouin  
-- **Tools:** Jupyter Notebook  
-- **Dataset:** [Inside Airbnb Open Data (NYC 2019)](https://www.kaggle.com/datasets/dgomonov/new-york-city-airbnb-open-data?)
+- **Vanilla JavaScript (ES6+)** – DOM manipulation, events, async APIs  
+- **HTML5 & CSS3** – Semantic layout, responsive grid/flexbox  
+- **Express.js (Minimal)** – Backend to serve Reddit API content  
+- **REST APIs** – Fetch news content dynamically  
+- **Vercel** – Deployment & hosting
 
----
+## Getting Started
 
-## How to Run
+## 1. Clone the repo
+```bash
+git clone https://github.com/your-username/Developer-News-Dashboard.git
+cd Developer-News-Dashboard
+```
+## 2. Start the backend
+```bash
+cd backend
+node server.js
+```
+## 3. Launch the frontend
+- Open **frontend/html/index.html** with Live Server in VS Code.
+- The app will run locally and fetch data from the backend.
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/<yourusername>/airbnb-pricing-analysis.git
-   cd airbnb-pricing-analysis
-   ```
-2. Install dependecies
-  ```bash
-  pip install -r requirements.txt
-  ```
-3. Launch notebooks
-  ```bash
-  cd notebooks
-  jupyter notebook
-  ```
-4. Start with the **Data Cleaning(01)** notebook and proceed sequentially.
+### What I Learned
 
----
+- How to **build JavaScript projects at moderate scale**
+- How to **leverage browser developer tools** effectively
+- **Git/GitHub best practices** for version control and collaboration
 
-## Key Takeaways
+### Challenges Faced
 
-- Room type dominates price structure - hosts with entire homes can expect the highest margins
-- Borough-level effects remain strong; **Manhattan > Brooklyn > Queens**
-- Superhost trust factor issues improves engagement but doesn't command higher nightly rates
+- Making the dashboard **fully responsive** for multiple devices (phones, tablets, laptops, desktops)
+- Implementing **user features (accounts, favorites)** without a full database to keep the project (almost) completely Vanilla JS
 
----
+### Performance
 
-## Author
-Shalom Arbsie
-Computer Science Student @ Addis Ababa University
-Focus: Data Science and Machine Learning
-![LinkedIn](www.linkedin.com/in/shalom-arbsie)
-![Github](https://github.com/shalomarbsie)
+Evaluated by the following tools: ESLint, SonarLint, Lighthouse and NPM's vulnerability checker (```npm audit fix```)
+
+## Lighthouse Evaluations
+- [Dashboard Evaluation](./evaluations/dashboard.pdf)
+- [Login Page Evaluation](./evaluations/login.pdf)
+- [Signup Page Evaluation](./evaluations/signup.pdf)
+- [Account-Details Page Evaluation](./evaluations/account.pdf)
+- [Change-Details Page Evaluation](./evaluations/change-details.pdf)
+
+### Feedback Welcome
+
+I'd love to hear your thoughts, critiques, and suggestions for improvement! Connect with me on [LinkedIn](https://www.linkedin.com/in/shalom-arbsie)
