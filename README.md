@@ -51,32 +51,32 @@ This project is **free for anyone** to use and is especially useful for develope
 
 ## Getting Started
 
-## 1. Clone the repo
+### 1. Clone the repo
 ```bash
 git clone https://github.com/your-username/Developer-News-Dashboard.git
 cd Developer-News-Dashboard
 ```
-## 2. Start the backend
+### 2. Start the backend
 ```bash
 cd backend
 node server.js
 ```
-## 3. Launch the frontend
+### 3. Launch the frontend
 - Open **frontend/html/index.html** with Live Server in VS Code.
 - The app will run locally and fetch data from the backend.
 
-### What I Learned
+## What I Learned
 
 - How to **build JavaScript projects at moderate scale**
 - How to **leverage browser developer tools** effectively
 - **Git/GitHub best practices** for version control and collaboration
 
-### Challenges Faced
+## Challenges Faced
 
 - Making the dashboard **fully responsive** for multiple devices (phones, tablets, laptops, desktops)
 - Implementing **user features (accounts, favorites)** without a full database to keep the project (almost) completely Vanilla JS
 
-### Performance
+## Performance
 
 Evaluated by the following tools: ESLint, SonarLint, Lighthouse and NPM's vulnerability checker (```npm audit fix```)
 
@@ -87,6 +87,6 @@ Evaluated by the following tools: ESLint, SonarLint, Lighthouse and NPM's vulner
 - [Account-Details Page Evaluation](./evaluations/account.pdf)
 - [Change-Details Page Evaluation](./evaluations/change-details.pdf)
 
-### Feedback Welcome
+## Feedback Welcome
 
 I'd love to hear your thoughts, critiques, and suggestions for improvement! Connect with me on [LinkedIn](https://www.linkedin.com/in/shalom-arbsie)
